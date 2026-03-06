@@ -4,6 +4,7 @@ import re
 import base64
 import json
 import logging
+import os  # <--- تمت الإضافة
 from urllib.parse import urlparse
 
 app = Flask(__name__)
@@ -315,4 +316,6 @@ def paypal_endpoint():
     return result
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5500, debug=False)
+    # استخدام المنفذ من متغير البيئة PORT (مهم لـ Railway)
+    port = int(os.environ.get('PORT', 5500))
+    app.run(host='0.0.0.0', port=port, debug=False)
